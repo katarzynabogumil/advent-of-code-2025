@@ -6,8 +6,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <unordered_map>
 #include <vector>
+#include <utility>
+#include <iostream>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ int moveDialP1(int pos, int dir, int steps)
   return pos;
 }
 
-int part1(vector<vector<int>> input)
+int part1(const vector<vector<int>> &input)
 {
   int pos = 50;
   int counter = 0;
@@ -59,7 +60,7 @@ int moveDialP2(int &pos, int &counter, int dir, int steps)
   return pos;
 }
 
-int part2(vector<vector<int>> input)
+int part2(const vector<vector<int>> &input)
 {
   int pos = 50;
   int counter = 0;
@@ -130,17 +131,17 @@ int main()
 
     int resPart1 = part1(parsedInput);
     auto timePart1 = chrono::duration_cast<chrono::microseconds>(chrono::high_resolution_clock::now() - start);
-    printf("Part 1: %d in %lldμs\n", resPart1, timePart1.count());
+    cout << format("Part 1: {} in {}μs\n", resPart1, timePart1.count());
 
     int resPart2 = part2(parsedInput);
     auto timePart2 = chrono::duration_cast<chrono::microseconds>(chrono::high_resolution_clock::now() - start);
-    printf("Part 2: %d in %lldμs\n", resPart2, timePart2.count());
+    cout << format("Part 2: {} in {}μs\n", resPart2, timePart2.count());
 
     return 0;
   }
   catch (const exception &e)
   {
-    fprintf(stderr, "Error: %s\n", e.what());
+    cerr << "Error: " << e.what() << "\n";
     return 1;
   }
 }
